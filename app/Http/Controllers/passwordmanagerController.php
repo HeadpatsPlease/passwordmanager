@@ -45,9 +45,9 @@ class passwordmanagerController extends Controller
     }
 
     public function getAccounts(Request $request){
-        $totalAccounts = savedAccount::all()->count();
         $search = $request->input('search');
         $id = $request->input('user');
+        $totalAccounts = savedAccount::where('user_id','=', $id)->count();
 
         if ($search) {
             $accounts = savedAccount::where('siteName', 'like', "%{$search}%")->where('user_id','=', $id)->get();
