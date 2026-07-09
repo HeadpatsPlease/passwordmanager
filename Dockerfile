@@ -1,4 +1,4 @@
-# Use PHP 8.3 with Apache
+# Use PHP 8.4 with Apache
 FROM php:8.4-apache
 
 # Install system dependencies
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y \
         zip \
         gd
 
-# Enable Apache rewrite module
+# Enable Apache rewrite
 RUN a2enmod rewrite
 
 # Install Composer
@@ -34,14 +34,17 @@ WORKDIR /var/www/html
 # Copy project files
 COPY . .
 
+# Copy Apache virtual host configuration
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Install Node dependencies and build assets
+# Build frontend assets
 RUN npm install
 RUN npm run build
 
-# Laravel optimizations
+# Laravel optimization
 RUN php artisan config:clear
 RUN php artisan route:clear
 RUN php artisan view:clear
@@ -49,11 +52,6 @@ RUN php artisan view:clear
 # Set permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
 RUN chmod -R 775 storage bootstrap/cache
-
-# Configure Apache to serve the public directory
-RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
-RUN sed -i 's!/var/www!/var/www/html/public!g' /etc/apache2/apache2.conf
-RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 EXPOSE 80
 
