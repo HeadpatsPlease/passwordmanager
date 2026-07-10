@@ -125,8 +125,8 @@
                                                         @csrf
                                                         <div class="mt-2 flex flex-col">
                                                             <input type="text" class="text-md text-black-500 mb-3" placeholder="siteName" name="siteName" value="{{ $acc['siteName'] }}">
-                                                            <input type="text" class="text-md text-black-500 mb-3" placeholder="Email/Phone#" name="email" value="{{ $acc['email'] }}">
-                                                            <input type="text" class="text-md text-black-500 mb-3" placeholder="Password" name="password" value="{{ $acc['password'] }}">
+                                                            <input type="text" minlength="8" maxlength="100" class="text-md  text-black-500 mb-3" placeholder="Email/Phone#" name="email" value="{{ $acc['email'] }}">
+                                                            <input type="text" minlength="8" maxlength="100" class="text-md text-black-500 mb-3" placeholder="Password" name="password" value="{{ $acc['password'] }}">
                                                             <input type="hidden" class="text-md text-black-500 mb-3" placeholder="id" name="save_id" value="{{ $acc['id'] }}">
                                                         </div>
                                                         </div>
