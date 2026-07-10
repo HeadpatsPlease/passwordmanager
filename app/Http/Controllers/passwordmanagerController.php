@@ -13,14 +13,13 @@ class passwordmanagerController extends Controller
             'siteName' => ['required','min:5','max:255'],
             'savedEmail' => ['required','min:5','max:255'],
             'savedPassword' => ['required','min:8','max:255'],
-            'user' => ['required']
         ]);
 
         savedAccount::create([
             'siteName' => $incomingFields['siteName'],
             'email' => $incomingFields['savedEmail'],
             'password' => $incomingFields['savedPassword'],
-            'user_id' => $incomingFields['user'],
+            'user_id' => Auth::id(),
         ]);
 
         return redirect('dashboard');
@@ -30,12 +29,10 @@ class passwordmanagerController extends Controller
             'siteName' => ['required','min:5','max:255'],
             'email' => ['required','min:5','max:255'],
             'password' => ['required','min:8','max:255'],
-            'save_id' => ['required']
         ]);
 
         savedAccount::updateOrInsert([
-                                        'id' => $updatingFields['save_id'
-                                    ]],
+                                        'id' => Auth::id()],
                                     [
                                         'email' => $updatingFields['email'],
                                         'password' => $updatingFields['password'],
