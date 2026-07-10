@@ -29,6 +29,7 @@ class passwordmanagerController extends Controller
             'siteName' => ['required','min:5','max:255'],
             'email' => ['required','min:5','max:255'],
             'password' => ['required','min:8','max:255'],
+            'save_id' => ['required']
         ]);
 
         savedAccount::updateOrInsert([
