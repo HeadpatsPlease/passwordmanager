@@ -158,9 +158,9 @@
                                                                 </span>
                                                             </button>
                                                             <button type="button" command="close" commandfor="dialog-{{ $acc['id'] }}" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
-                                                        </div>
-                                                    </form>
 
+                                                    </form>
+                                                    </div>
                                                     </div>
                                                     </div>
 
