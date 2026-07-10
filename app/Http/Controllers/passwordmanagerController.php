@@ -44,18 +44,25 @@ class passwordmanagerController extends Controller
         return redirect('dashboard');
     }
 
-    public function getAccounts(Request $request){
-        $search = $request->input('search');
-        $id = $request->input('user');
-        $totalAccounts = savedAccount::where('user_id','=', $id)->count();
+    public function getAccounts(Request $request)
+{
+    $search = $request->input('search');
+    $id = Auth::id();
 
-        if ($search) {
-            $accounts = savedAccount::where('siteName', 'like', "%{$search}%")->where('user_id','=', $id)->get();
-        } else{
-            $accounts = savedAccount::where('user_id','=', $id)->get();
-        }
-        return view('dashboard', ["totalAccounts" => $totalAccounts,"accounts" => $accounts]);
+    $query = savedAccount::where('user_id', $id);
+
+    if ($search) {
+        $query->where('siteName', 'like', "%{$search}%");
     }
+
+    $accounts = $query->get();
+    $totalAccounts = $accounts->count();
+
+    return view('dashboard', [
+        'totalAccounts' => $totalAccounts,
+        'accounts' => $accounts,
+    ]);
+}
 
     public function deleteAccounts(Request $request){
         $deleteFields = $request->validate([

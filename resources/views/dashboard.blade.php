@@ -17,13 +17,6 @@
                         <h2 class="text-lg font-semibold text-gray-700">Search Site</h2>
                         <form action="{{ route('dashboard') }}" method="get" >
                             @csrf
-                            <input
-                                name="user"
-                                type="hidden"
-                                class="text-sm leading-none font-medium border border-gray-300 dark:border-gray-600 rounded-md px-5 py-5 focus:outline-none focus:border-blue-500 dark:focus:border-white dark:bg-gray-800 dark:text-white"
-                                value="{{ Auth::User()['id'] }}"
-                                required
-                            >
                             <input name="search" type="text" class="text-2xl font-bold text-yellow-600">
                             <button type="submit" class="px-6 py-2 min-w-[120px] text-center text-violet-600 border border-violet-600 rounded hover:bg-violet-600 hover:text-white active:bg-indigo-500 focus:outline-none focus:ring">search</button>
                         </form>
@@ -65,13 +58,6 @@
                                 minlength="8"
                                 maxlength="100"
                                 autocomplete="off"
-                                required
-                            >
-                            <input
-                                name="user"
-                                type="hidden"
-                                class="text-sm leading-none font-medium border border-gray-300 dark:border-gray-600 rounded-md px-5 py-5 focus:outline-none focus:border-blue-500 dark:focus:border-white dark:bg-gray-800 dark:text-white"
-                                value="{{ Auth::User()['id'] }}"
                                 required
                             >
                             <button
