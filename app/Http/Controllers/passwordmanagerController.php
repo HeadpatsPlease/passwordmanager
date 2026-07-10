@@ -32,7 +32,8 @@ class passwordmanagerController extends Controller
         ]);
 
         savedAccount::updateOrInsert([
-                                        'id' => Auth::id()],
+                                        'id' => $updatingFields['save_id'
+                                    ]],
                                     [
                                         'email' => $updatingFields['email'],
                                         'password' => $updatingFields['password'],
