@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [passwordmanagerController::class, 'getAccounts'])->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::post('/dashboard', [passwordmanagerController::class,'getAccounts'])->middleware(['auth', 'verified'])->name('dashboard.load');
 Route::post('/dashboard', [passwordmanagerController::class,'addAccount'])->name('dashboard.add');
 Route::post('/dashboard/update', [passwordmanagerController::class,'updateAccount'])->name('dashboard.update');
 Route::post('/dashboard/delete', [passwordmanagerController::class,'deleteAccounts'])->name('dashboard.delete');
